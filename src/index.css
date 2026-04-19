@@ -1,0 +1,288 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
+
+:root {
+  --bg-dark: #0f172a;
+  --text-light: #f8fafc;
+  --text-muted: #94a3b8;
+  
+  --primary: #3b82f6; /* Blue for default/brand */
+  --primary-hover: #2563eb;
+  
+  --hafal: #10b981; /* Emerald for hafal */
+  --hafal-glow: rgba(16, 185, 129, 0.4);
+  
+  --ragu: #f59e0b; /* Amber for ragu */
+  --ragu-glow: rgba(245, 158, 11, 0.4);
+  
+  --lupa: #ef4444; /* Red for lupa */
+  --lupa-glow: rgba(239, 68, 68, 0.4);
+
+  --glass-bg: rgba(30, 41, 59, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg-dark);
+  background-image: radial-gradient(circle at top right, rgba(59, 130, 246, 0.15), transparent 40%),
+                    radial-gradient(circle at bottom left, rgba(16, 185, 129, 0.1), transparent 40%);
+  color: var(--text-light);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.tchinese {
+  font-family: 'Noto Sans TC', sans-serif;
+}
+
+.app-container {
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  background: linear-gradient(to right, #60a5fa, #a78bfa);
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+.header p {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  background: var(--glass-bg);
+  padding: 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(12px);
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.tab-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+  color: var(--text-light);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tab-btn.active {
+  color: var(--text-light);
+  background: var(--primary);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.tab-btn.active.tab-hafal { background: var(--hafal); box-shadow: 0 4px 12px var(--hafal-glow); }
+.tab-btn.active.tab-ragu { background: var(--ragu); box-shadow: 0 4px 12px var(--ragu-glow); }
+.tab-btn.active.tab-lupa { background: var(--lupa); box-shadow: 0 4px 12px var(--lupa-glow); }
+
+/* Flashcard Area */
+.flashcard-container {
+  width: 100%;
+  max-width: 400px;
+  perspective: 1000px;
+  margin-bottom: 2rem;
+}
+
+.flashcard {
+  width: 100%;
+  height: 300px;
+  position: relative;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.flashcard.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+
+.card-face.front {
+  background: linear-gradient(145deg, rgba(30,41,59,0.8), rgba(15,23,42,0.9));
+}
+
+.card-face.back {
+  background: linear-gradient(145deg, rgba(30,41,59,0.9), rgba(15,23,42,0.95));
+  transform: rotateY(180deg);
+}
+
+.audio-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.audio-btn:hover {
+  background: var(--primary);
+  transform: scale(1.1);
+}
+
+.audio-btn:active {
+  transform: scale(0.95);
+}
+
+.char-main {
+  font-size: 5rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  margin-bottom: 0.5rem;
+}
+
+.pinyin {
+  font-size: 2rem;
+  font-weight: 500;
+  color: #93c5fd;
+  margin-bottom: 1.5rem;
+}
+
+.meaning {
+  font-size: 1.5rem;
+  color: #e2e8f0;
+}
+
+.click-hint {
+  position: absolute;
+  bottom: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0.7;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  max-width: 400px;
+  justify-content: center;
+}
+
+.action-btn {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: 16px;
+  font-weight: 600;
+  font-size: 1rem;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(10px);
+}
+
+.action-btn.btn-lupa:hover { background: var(--lupa); box-shadow: 0 8px 24px var(--lupa-glow); transform: translateY(-4px); }
+.action-btn.btn-ragu:hover { background: var(--ragu); box-shadow: 0 8px 24px var(--ragu-glow); transform: translateY(-4px); }
+.action-btn.btn-hafal:hover { background: var(--hafal); box-shadow: 0 8px 24px var(--hafal-glow); transform: translateY(-4px); }
+
+.action-btn:active {
+  transform: translateY(0);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-muted);
+  background: var(--glass-bg);
+  border-radius: 24px;
+  border: 1px solid var(--glass-border);
+}
+
+.empty-state h3 {
+  font-size: 1.5rem;
+  color: var(--text-light);
+  margin-bottom: 1rem;
+}
+
+.progress-info {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  max-width: 400px;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--glass-border);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
