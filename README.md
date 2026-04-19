@@ -9,6 +9,7 @@ A modern, web-based flashcard application tailored for learning Traditional Chin
 * **Premium Design**: Built with a dynamic, futuristic Glassmorphism aesthetic to keep you motivated and engaged.
 
 ## 📖 How to Use (For Learners)
+**Access with this link** : https://taiwan-flash-card-sh.vercel.app/
 1. **View the Card**: The app displays a Traditional Chinese character on the screen.
 2. **Flip for Meaning**: Click or tap the card to flip it and reveal the Pinyin and English translation.
 3. **Rate Your Memory**: Once you see the answer, evaluate yourself using one of the three buttons below:
