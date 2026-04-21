@@ -2,14 +2,14 @@ import { BrainCircuit, Frown, CheckCircle2, LayoutGrid } from 'lucide-react';
 
 export default function CategoryTabs({ activeTab, setActiveTab, counts }) {
   const tabs = [
-    { id: 'all', label: 'Semua', icon: LayoutGrid, count: counts.all },
+    { id: 'all', label: 'Belum Hafal', icon: LayoutGrid, count: counts.all - counts.hafal },
     { id: 'hafal', label: 'Hafal Banget', icon: CheckCircle2, count: counts.hafal },
     { id: 'ragu', label: 'Ragu-ragu', icon: BrainCircuit, count: counts.ragu },
     { id: 'lupa', label: 'Lupa', icon: Frown, count: counts.lupa }
   ];
 
   return (
-    <div className="tabs">
+    <div className="tabs animate-fade-in">
       {tabs.map((tab) => {
         const Icon = tab.icon;
         return (
@@ -18,15 +18,10 @@ export default function CategoryTabs({ activeTab, setActiveTab, counts }) {
             className={`tab-btn ${activeTab === tab.id ? `active tab-${tab.id}` : ''}`}
             onClick={() => setActiveTab(tab.id)}
           >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <div className="tab-content">
               <Icon size={16} />
               <span>{tab.label}</span>
-              <span style={{ 
-                background: 'rgba(255,255,255,0.1)', 
-                padding: '2px 8px', 
-                borderRadius: '12px',
-                fontSize: '0.8rem'
-              }}>
+              <span className="tab-count">
                 {tab.count}
               </span>
             </div>
@@ -36,3 +31,4 @@ export default function CategoryTabs({ activeTab, setActiveTab, counts }) {
     </div>
   );
 }
+
