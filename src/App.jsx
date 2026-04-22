@@ -201,69 +201,20 @@ function App() {
       {currentView === 'dashboard' ? (
         <div className="dashboard-content animate-fade-in">
           <div className="stats-overview">
-            <div className="main-stat-circle">
-              <svg className="progress-ring" width="220" height="220">
-                <circle
-                  className="progress-ring-bg"
-                  stroke="rgba(255,255,255,0.05)"
-                  strokeWidth="12"
-                  fill="transparent"
-                  r="90"
-                  cx="110"
-                  cy="110"
-                />
-                <circle
-                  className="progress-ring-circle"
-                  stroke="var(--primary)"
-                  strokeWidth="12"
-                  strokeDasharray={`${2 * Math.PI * 90}`}
-                  strokeDashoffset={`${2 * Math.PI * 90 * (1 - (vocabularyData.length > 0 ? (Object.values(vocabStatus).filter(s=>s==='hafal').length / Object.keys(vocabStatus).length) : 0))}`}
-                  strokeLinecap="round"
-                  fill="transparent"
-                  r="90"
-                  cx="110"
-                  cy="110"
-                />
-              </svg>
-              <div className="main-stat-content">
-                <span className="value">{vocabularyData.length > 0 ? Math.round((Object.values(vocabStatus).filter(s=>s==='hafal').length / Object.keys(vocabStatus).length) * 100) : 0}%</span>
-                <span className="label">Terhafalkan</span>
-              </div>
+            <div className="main-stat">
+              <span className="value">{vocabularyData.length > 0 ? Math.round((Object.values(vocabStatus).filter(s=>s==='hafal').length / Object.keys(vocabStatus).length) * 100) : 0}%</span>
+              <span className="label">Total Terhafalkan</span>
             </div>
-            
-            <div className="mini-stats-grid">
-              <div className="m-stat-card total">
-                <div className="m-stat-info">
-                  <label>Total Kata</label>
-                  <span>{Object.keys(vocabStatus).length}</span>
-                </div>
-              </div>
-              <div className="m-stat-card hafal">
-                <div className="m-stat-info">
-                  <label>Hafal</label>
-                  <span>{Object.values(vocabStatus).filter(s=>s==='hafal').length}</span>
-                </div>
-              </div>
-              <div className="m-stat-card ragu">
-                <div className="m-stat-info">
-                  <label>Ragu</label>
-                  <span>{Object.values(vocabStatus).filter(s=>s==='ragu').length}</span>
-                </div>
-              </div>
-              <div className="m-stat-card lupa">
-                <div className="m-stat-info">
-                  <label>Lupa</label>
-                  <span>{Object.values(vocabStatus).filter(s=>s==='lupa').length}</span>
-                </div>
-              </div>
+            <div className="mini-stats">
+              <div className="m-stat"><span>{Object.keys(vocabStatus).length}</span> <label>Total</label></div>
+              <div className="m-stat"><span>{Object.values(vocabStatus).filter(s=>s==='ragu').length}</span> <label>Ragu</label></div>
+              <div className="m-stat"><span>{Object.values(vocabStatus).filter(s=>s==='lupa').length}</span> <label>Lupa</label></div>
             </div>
           </div>
 
           <TopicSelector 
             activeTopic={activeTopic} 
             onSelect={enterStudyMode}
-            vocabStatus={vocabStatus}
-            vocabularyData={vocabularyData}
           />
           
           <div className="dashboard-footer">
